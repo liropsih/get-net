@@ -1,0 +1,33 @@
+//Animation
+.component-fade-enter-active,
+.component-fade-leave-active {
+    transition: opacity 0.15s ease;
+}
+.component-fade-enter,
+.component-fade-leave-to {
+    opacity: 0;
+}
+
+//Base
+.empty-layout > .container > .row {
+    height: 100vh;
+}
+.breadcrumb a {
+    color: $info
+}
+.card {
+    background-color: $white;
+    height: 100%;
+    &-list &-body {
+        padding: 0 !important;
+    }
+}
+.page-item {
+    .page-link {
+        color: $secondary;
+    }
+    &.active .page-link {
+        background-color: $info;
+        border-color: $info;
+    }
+}

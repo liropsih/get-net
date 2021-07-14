@@ -1,18 +1,43 @@
-# get-net
+# test get-net
 
-## Project setup
+## Установка
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
+В корне проекта создать файл .env с содержимым:
 ```
-npm run serve
+VUE_APP_API_URL=https://localhost:3000/api
+SERVER_PORT=3000
+SECRET_KEY=supersecret
+
+DB_NAME= имя базы данных
+DB_USER=postgres
+DB_PASSWORD=root
+DB_HOST=localhost
+DB_PORT=5432
 ```
 
-### Compiles and minifies for production
+
+### База данных PostgreSQL
+Бэкап базы данных хранится в /server/database/DATABASE.sql
+Вместо восстановления бэкапа можно произвести установку, запустив команду:
+```
+npm run install
+```
+
+### Запуск в режиме разработки
+```
+npm run dev
+```
+
+### Компилирование для production
 ```
 npm run build
+```
+
+### Запуск production
+```
+npm run start
 ```
 
 ### Customize configuration

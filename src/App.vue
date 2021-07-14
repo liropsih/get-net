@@ -1,32 +1,45 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <component :is="layout" />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import EmptyLayout from '@/layouts/EmptyLayout'
+import MainLayout from '@/layouts/MainLayout'
+import { mapGetters } from 'vuex'
+import messages from '@/utils/messages'
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+export default {
+  name: 'App',
+  components: {
+    EmptyLayout, MainLayout
+  },
+  computed: {
+    ...mapGetters(['error', 'message']),
+    layout() {
+      return (this.$route.meta.layout || 'empty') + '-layout'
+    },
+    queryMessage() {
+      return this.$route.query.message
+    }
+  },
+  watch: {
+    error(error) {
+      if (error) {
+        this.$error(error)
+      }
+    },
+    message(message) {
+      if (message) {
+        this.$message(message)
+      }
+    },
+    queryMessage(queryMessage) {
+      if (messages[queryMessage]) {
+        this.$message(messages[queryMessage])
+      }
     }
   }
 }
-</style>
+</script>
