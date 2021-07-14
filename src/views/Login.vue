@@ -5,16 +5,24 @@
         <b-card header="Авторизация">
           <b-form @submit.prevent="submit">
             <b-form-group
-              label="Логин"
-              label-for="login"
-              invalid-feedback="Логин не должен быть пустым"
-              :state="$v.form.login.$dirty ? $v.form.login.required : null"
+              label="Email"
+              label-for="email"
+              :invalid-feedback="
+                !$v.form.email.required
+                  ? 'Email не должен быть пустым'
+                  : 'Некорректный Email'
+              "
+              :state="
+                $v.form.email.$dirty ? $v.form.email.required && $v.form.email.email : null
+              "
             >
               <b-form-input
-                id="login"
-                v-model.trim="form.login"
-                @blur="$v.form.login.$touch"
-                :state="$v.form.login.$dirty ? $v.form.login.required : null"
+                id="email"
+                v-model.trim="form.email"
+                @blur="$v.form.email.$touch"
+                :state="
+                  $v.form.email.$dirty ? $v.form.email.required && $v.form.email.email : null
+                "
               />
             </b-form-group>
             <b-form-group
@@ -46,20 +54,20 @@
 </template>
 
 <script>
-import { required } from 'vuelidate/lib/validators'
+import { required, email } from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'Login',
+  name: 'email',
   data: () => ({
     form: {
-      login: '',
+      email: '',
       password: ''
     }
   }),
   validations: {
     form: {
-      login: { required },
+      email: { required, email },
       password: { required }
     }
   },

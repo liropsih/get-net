@@ -11,29 +11,15 @@ const generateJwt = (id, name, roles) => {
     )
 }
 
-const changePassword = async (user, oldPassword, newPassword, next) => {
-    try {
-        const comparePassword = await bcrypt.compare(oldPassword, user.password)
-        if (!comparePassword) {
-            return next(ApiError.badRequest('Неверный пароль'))
-        }
-        const hashPassword = await bcrypt.hash(newPassword, 5)
-        await user.update({ password: hashPassword })
-        return
-    } catch (e) {
-        throw e
-    }
-}
-
 class UserController {
     async login(req, res, next) {
         try {
-            const { login, password } = req.body
+            const { email, password } = req.body
             const user = await User.findOne({
-                where: { login }
+                where: { email }
             })
             if (!user) {
-                return next(ApiError.badRequest('Пользователя с таким логином не существует'))
+                return next(ApiError.badRequest('Пользователя с таким email не существует'))
             }
             const comparePassword = await bcrypt.compare(password, user.password)
             if (!comparePassword) {

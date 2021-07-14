@@ -30,10 +30,9 @@ async function createTableRecords() {
 
         let user = await User.findOrCreate({
             where: {
-                login: 'Admin',
+                email: 'aa@aa.aa',
                 password: '$2b$05$EjKH9/mDP5RojK34aAXrMus6CWU/.FLu92WuO4.Nn489R6Bspvy3S', //123456
                 name: 'Админ',
-                email: 'aa@aa.aa',
                 phone: '+7 (999) 999-99-99',
                 balance: '700'
             }

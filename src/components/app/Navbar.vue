@@ -1,6 +1,6 @@
 <template>
   <b-navbar type="dark" variant="info">
-    <b-navbar-brand :to="{ name: 'Home' }">Кабинет</b-navbar-brand>
+    <b-navbar-brand :to="{ name: 'Home' }">TestTelecom</b-navbar-brand>
     <b-navbar-nav class="ml-auto">
       <b-nav-item-dropdown right>
         <template #button-content>
