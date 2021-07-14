@@ -5,7 +5,7 @@
 -- Dumped from database version 13.3
 -- Dumped by pg_dump version 13.3
 
--- Started on 2021-07-14 16:15:34 +05
+-- Started on 2021-07-14 16:34:38 +05
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -300,6 +300,9 @@ COPY public.pays (id, value, "createdAt", "updatedAt", "userId") FROM stdin;
 5	200	2021-07-14 13:31:32.041+05	2021-07-14 13:31:32.041+05	1
 6	1200	2021-07-14 13:31:32.044+05	2021-07-14 13:31:32.044+05	1
 7	200	2021-07-14 16:12:34.637+05	2021-07-14 16:12:34.637+05	1
+8	100	2021-07-14 16:32:29.043+05	2021-07-14 16:32:29.043+05	1
+9	120	2021-07-14 16:32:49.378+05	2021-07-14 16:32:49.378+05	1
+10	370	2021-07-14 16:32:56.65+05	2021-07-14 16:32:56.65+05	1
 \.
 
 
@@ -323,7 +326,7 @@ COPY public.tariffs (id, title, speed, price, "createdAt", "updatedAt") FROM std
 --
 
 COPY public.user_additionals (id, "createdAt", "updatedAt", "userId", "additionalId") FROM stdin;
-2	2021-07-14 16:12:50.52+05	2021-07-14 16:12:50.52+05	1	1
+4	2021-07-14 16:33:34.335+05	2021-07-14 16:33:34.335+05	1	1
 \.
 
 
@@ -334,7 +337,7 @@ COPY public.user_additionals (id, "createdAt", "updatedAt", "userId", "additiona
 --
 
 COPY public.users (id, email, password, name, phone, balance, "createdAt", "updatedAt", "tariffId") FROM stdin;
-1	aa@aa.aa	$2b$05$EjKH9/mDP5RojK34aAXrMus6CWU/.FLu92WuO4.Nn489R6Bspvy3S	Админ	+7 (999) 999-99-99	900	2021-07-14 13:31:31.99+05	2021-07-14 16:13:18.986+05	3
+1	aa@aa.aa	$2b$05$EjKH9/mDP5RojK34aAXrMus6CWU/.FLu92WuO4.Nn489R6Bspvy3S	Админ	+7 (999) 999-99-99	1490	2021-07-14 13:31:31.99+05	2021-07-14 16:32:56.656+05	3
 \.
 
 
@@ -353,7 +356,7 @@ SELECT pg_catalog.setval('public.additionals_id_seq', 3, true);
 -- Name: pays_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pays_id_seq', 7, true);
+SELECT pg_catalog.setval('public.pays_id_seq', 10, true);
 
 
 --
@@ -371,7 +374,7 @@ SELECT pg_catalog.setval('public.tariffs_id_seq', 3, true);
 -- Name: user_additionals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.user_additionals_id_seq', 2, true);
+SELECT pg_catalog.setval('public.user_additionals_id_seq', 4, true);
 
 
 --
@@ -482,7 +485,7 @@ ALTER TABLE ONLY public.users
     ADD CONSTRAINT "users_tariffId_fkey" FOREIGN KEY ("tariffId") REFERENCES public.tariffs(id) ON UPDATE CASCADE ON DELETE SET NULL;
 
 
--- Completed on 2021-07-14 16:15:35 +05
+-- Completed on 2021-07-14 16:34:38 +05
 
 --
 -- PostgreSQL database dump complete
